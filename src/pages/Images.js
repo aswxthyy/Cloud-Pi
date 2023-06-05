@@ -3,8 +3,6 @@ import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
-import { Grid } from '@mui/material';
-import { Link } from 'react-router-dom';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
@@ -15,12 +13,15 @@ import Badge from '@mui/material/Badge';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import SearchIcon from '@mui/icons-material/Search';
 import { mainListItems} from './listItems';
-import AppWidgetSummary from '../components/AppWidgetSummary';
+import { Grid } from '@mui/material';
 import Card from "./card";
+import Button from '@mui/material/Button';
+import axios from 'axios';
 
 const drawerWidth = 240;
+
+const theme = createTheme();
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -72,17 +73,36 @@ const mdTheme = createTheme(
         typography: {
           fontFamily: 'Poppins',
         },
-      }
+      },
+        { palette: { 
+      primary: {
+          main: '#E3E1FF',} // Change the primary color here
+        },
+      },
 );
 
 const Container = styled(Grid)`
-  margin-top: 20px;
+margin-top: 100px;
+margin-left: 25px;
+margin-right: 25px;
 `;
 
-function DashboardContent() {
+function Images() {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
+  };
+
+  const handleUploadClick = () => {
+    axios.post('https://b767-2402-3a80-1e09-f34d-110b-d2b4-487c-6788.ngrok-free.app/home/upload/', /* data payload */)
+      .then(response => {
+        // Handle the response from the backend
+        console.log(response.data);
+      })
+      .catch(error => {
+        // Handle any errors
+        console.error(error);
+      });
   };
 
   return (
@@ -115,18 +135,31 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1, color : "#50469D" }}
             >
-              CloudPi
+              Images
             </Typography>
-            <SearchIcon style={{ marginRight: 5, marginLeft : 5 }} />
-              <input
-                type="text"
-                placeholder="  Search"
-                style={{ color: '#50469D', border: 'none', background: 'transparent' }}
-              />
+
+            {/* upload button */}
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: '#50469D',
+                color: '#ffffff',
+                '&:hover': {
+                  backgroundColor: '#3B3272',
+                },
+                marginRight: '25px',
+              }}
+              onClick={handleUploadClick}
+                // Add your upload logic here
+              
+            >
+              Upload
+            </Button>
+
             <IconButton>
               <Badge>
                 <AccountCircleIcon />
-                <Typography variant="body1" sx={{ marginLeft: 1, color : "#454080" }}>
+                <Typography variant="body1" sx={{ marginLeft: 1, color : "#50469D" }}>
                  Nandakumar
                 </Typography>
               </Badge>
@@ -158,57 +191,24 @@ function DashboardContent() {
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',
-            padding : '50px',
           }}
         >
-          {/* docs,imgs,music,vids */}
-          <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} md={3}>
-          <Link to="/documents">
-            <AppWidgetSummary title="Documents" icon={'ant-design:file-text-filled'} />
-          </Link>
-          </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-          <Link to="/images">
-            <AppWidgetSummary title="Images" color="success" icon={'ant-design:picture-filled'} />
-          </Link>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-          <Link to="/videos">
-            <AppWidgetSummary title="Videos" color="warning" icon={'ant-design:video-camera-filled'} />
-           </Link>
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-          <Link to="/music">
-            <AppWidgetSummary title="Music" color="error" icon={'ant-design:customer-service-filled'} />
-          </Link>
-          </Grid>
-          </Grid>
-          
-        {/* FileGrid components */}
-        
-
-       
-      <Container container spacing={3}>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Card />
-        </Grid>
-      {/* Add more Grid items with Card components here */}
-    </Container>
-
-        
+          <Container container spacing={3}>
+              <Grid item xs={12} sm={6} md={4}>
+                <Card />
+              </Grid>
+              <Grid item xs={12} sm={6} md={4}>
+                <Card />
+              </Grid>
+              <Grid item xs={12} sm={6} md={4}>
+                <Card />
+              </Grid>
+              <Grid item xs={12} sm={6} md={4}>
+                <Card />
+              </Grid>
+            {/* Add more Grid items with Card components here */}
+          </Container>
           <Toolbar />
         </Box>
       </Box>
@@ -216,6 +216,6 @@ function DashboardContent() {
   );
 }
 
-export default function Dashboard() {
-  return <DashboardContent />;
+export default function ImagesContent() {
+  return <Images />;
 }

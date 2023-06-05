@@ -19,12 +19,12 @@ export const mainListItems = (
       <ListItemText primary="Dashboard" />
     </ListItemButton>
 
-    <ListItemButton component={Link} to="/allfiles">
+    {/* <ListItemButton component={Link} to="/allfiles">
       <ListItemIcon>
         <FolderIcon />
       </ListItemIcon>
       <ListItemText primary="All Files" />
-    </ListItemButton>
+    </ListItemButton> */}
 
     <ListItemButton component={Link} to="/locked">
       <ListItemIcon>
@@ -40,12 +40,12 @@ export const mainListItems = (
       <ListItemText primary="Starred" />
     </ListItemButton>
 
-    <ListItemButton>
+    {/* <ListItemButton>
       <ListItemIcon component={Link} to="/upload">
         <CloudUploadIcon />
       </ListItemIcon>
       <ListItemText primary="Upload" />
-    </ListItemButton>
+    </ListItemButton> */}
     
     <ListItemButton>
       <ListItemIcon component={Link} to="/storage">

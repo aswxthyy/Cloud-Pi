@@ -8,11 +8,14 @@ import {
 } from "react-router-dom";
 import SignIn from './pages/SignIn';
 import Dashboard from './pages/Dashboard';
-import AllFiles from './pages/AllFiles';
 import Locked from './pages/Locked';
 import Starred from './pages/Starred';
-import Upload from './pages/Upload';
 import Storage from './pages/Storage';
+import Documents from './pages/Documents';
+import Images from './pages/Images';
+import Videos from './pages/Videos';
+import Music from './pages/Music';
+
 
 const router = createBrowserRouter([
   {
@@ -24,10 +27,7 @@ const router = createBrowserRouter([
     path: "dashboard",
     element: <Dashboard/>,
   },
-  {
-    path: "allfiles",
-    element: <AllFiles/>,
-  },
+  
   {
     path: "locked",
     element: <Locked/>,
@@ -37,12 +37,24 @@ const router = createBrowserRouter([
     element: <Starred/>,
   },
   {
-    path: "upload",
-    element: <Upload/>,
-  },
-  {
     path: "storage",
     element: <Storage/>,
+  },
+  {
+    path: "documents",
+    element: <Documents/>,
+  },
+  {
+    path: "images",
+    element: <Images/>,
+  },
+  {
+    path: "videos",
+    element: <Videos/>,
+  },
+  {
+    path: "music",
+    element: <Music/>,
   },
 ]);
 

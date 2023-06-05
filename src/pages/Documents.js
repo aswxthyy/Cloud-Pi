@@ -87,7 +87,7 @@ margin-left: 25px;
 margin-right: 25px;
 `;
 
-function AllFilesContent() {
+function Documents() {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -135,7 +135,7 @@ function AllFilesContent() {
               noWrap
               sx={{ flexGrow: 1, color : "#50469D" }}
             >
-              CloudPi - All Files
+              Documents 
             </Typography>
 
             {/* upload button */}
@@ -216,6 +216,6 @@ function AllFilesContent() {
   );
 }
 
-export default function AllFiles() {
-  return <AllFilesContent />;
+export default function DocumentsContent() {
+  return <Documents />;
 }
